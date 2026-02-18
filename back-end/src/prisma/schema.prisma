@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model estoque {
+  id               Int       @id @default(autoincrement())
+  nome             String?   @db.VarChar(255)
+  quantidade       Int?
+  categoria        String?   @db.VarChar(100)
+  ultima_modificao DateTime? @db.Timestamp(6)
+  data_criacao     DateTime? @db.Timestamp(6)
+  status           Boolean?
+}
+
+model usuarios {
+  id            Int       @id @default(autoincrement())
+  namecompleto  String?   @db.VarChar(250)
+  firstname     String?   @db.VarChar(250)
+  userdeacess   String?   @db.VarChar(100)
+  passwordacess String?   @db.VarChar(100)
+  tipodeacesso  String?   @db.VarChar(10)
+  ultimologin   DateTime? @db.Date
+}
