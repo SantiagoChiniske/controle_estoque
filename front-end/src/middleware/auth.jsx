@@ -8,7 +8,6 @@ export default function authMiddleware({children}){
         return <Navigate to="/login" replace />
        
     }
-    console.log(token)
 
    axios.get("http://localhost:3000/user/validation",{
     headers:{

@@ -1,7 +1,10 @@
+import { useState } from "react"
 import Logo from "../../assets/Logo.svg"
 import { Link } from "react-router-dom"
 
 export default function  Header(){
+    const roleToken = sessionStorage.getItem("role")
+
 
     return(
         <aside className="w-55 h-screen  bg-black flex flex-col items-center">
@@ -15,7 +18,12 @@ export default function  Header(){
                 <Link className="text-center text-white font-light py-4 border-b-primary border-b-1 w-45 m-2  focus:text-primary focus:font-bold hover:text-primary " to="/estoque">Estoque</Link>
                 <Link className="text-center text-white font-light py-4 border-b-primary border-b-1 w-45 m-2  focus:text-primary focus:font-bold hover:text-primary " to="/adicionar">Adicionar</Link>
                 <Link className="text-center text-white font-light py-4 border-b-primary border-b-1 w-45 m-2  focus:text-primary focus:font-bold hover:text-primary " to="/remove">Retirar</Link>
-                <Link className="text-center text-white font-light py-4 border-b-primary border-b-1 w-45 m-2  focus:text-primary focus:font-bold hover:text-primary " to="/listar/produtos">Listar itens</Link>
+
+                {roleToken === "ADMIN"? 
+                 <Link className="text-center text-white font-light py-4 border-b-primary border-b-1 w-45 m-2  focus:text-primary focus:font-bold hover:text-primary " to="/listar/produtos">Listar itens</Link>
+                :<></>}
+                
+               
 
             </nav>
         

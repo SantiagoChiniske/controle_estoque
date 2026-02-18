@@ -6,12 +6,15 @@ import { Link } from 'react-router-dom';
 
 export default function ListaProdutos (){
     const [produtos,setProdutos] = useState([])
+    const [todosProdutos, setTodosProdutos] = useState([])
+    const[pesquisa,setPesquisa]=useState("")
   
  useEffect(()=>{
 
   const useEffect = async ()=>{
     axios.get("http://localhost:3000/estoque").then(response =>{
       setProdutos(response.data)
+      setTodosProdutos(response.data)
     }).catch(error=>{console.log(error)})
 
   }
@@ -36,13 +39,29 @@ useEffect()
     
 
    }
+   function pesquisaProduto(e){
+    e.preventDefault();
+    const valorProduto = e.target.value
 
+    const newProduto = todosProdutos.filter(produto=>{
+      const nomeProduto = produto.nome
+      return nomeProduto.includes(valorProduto)  ;
+    })
+
+    console.log(newProduto)
+    setProdutos(newProduto)
+
+   }
 
   return (
     <div className='bg-secondary flex flex-row'>
       <Header/>
       <main className='m-10'>
-         <h1 className='text-white text-2xl font-medium'>Lista de produtos:</h1>
+        <div className='flex justify-between'>
+     <h1 className='text-white text-2xl font-medium'>Lista de produtos:</h1>
+         <input type="text" name="" id=""  placeholder='Pesquise pelo produto' className=' text-white' onChange={pesquisaProduto}/>
+        </div>
+        
               <table className='text-white w-200 text-center '>
                 <thead className=''>
                     <tr>
