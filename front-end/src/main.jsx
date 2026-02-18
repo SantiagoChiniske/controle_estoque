@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider} from "react-router-dom"
+import { createBrowserRouter, RouterProvider, Navigate} from "react-router-dom"
 import './index.css'
 import Estoque from './pages/estoque.jsx'
 import Home from './pages/home.jsx'
@@ -8,11 +8,15 @@ import Adicionar from './pages/adiconar.jsx'
 import ListaProdutos from './pages/listaProdutos.jsx'
 import Product from './pages/product.jsx'
 import Login from './pages/login.jsx'
+import AuthMiddleware from "../src/middleware/auth.jsx"
 const router =  createBrowserRouter ([
     {
     path:'/',
     element: (
-         <Home/>
+      <AuthMiddleware>
+                 <Home/>
+      </AuthMiddleware>
+
     )
     
  
@@ -28,30 +32,34 @@ const router =  createBrowserRouter ([
   {
     path:'/estoque',
     element: (
-         <Estoque/>
+          <AuthMiddleware><Estoque/></AuthMiddleware>
+         
     )
   },
     {
     path:'/produto/editar/:id',
     element: (
-         <Product/>
+          <AuthMiddleware><Product/></AuthMiddleware>
+         
     )
   },
     {
     path:'/adicionar',
     element: (
-         <Adicionar/>
+          <AuthMiddleware>  <Adicionar/></AuthMiddleware>
+   
     )
   },
     {
     path:'/listar/produtos',
     element: (
-         <ListaProdutos/>
+          <AuthMiddleware><ListaProdutos/></AuthMiddleware>
+         
     )
   },
   {
     path:'*',
-    element:{}
+    element:<Navigate to="/" />
   }
 ])
 

@@ -1,8 +1,11 @@
 import { useState } from "react"
 import Logo from "../assets/Logo.svg"
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 export default function Login (){
+    const navigate = useNavigate();
+
     const [user,setUser] = useState("")
     const [password,setPassword] = useState("")
 
@@ -17,12 +20,18 @@ export default function Login (){
 
         ).then(res =>{
             const data = res.data
-            console.log(data.token)
-        }).catch(error =>{console.log(error)})
+            if(data == "Usuario invalido"){
+                alert("Usuario invalido!")
+                return
+            }
+            sessionStorage.setItem("token", data)
+            navigate("/")
+        }).catch(error =>{console.log(error)
+            alert(error)
+        })
 
 
     }
-
 
     return (
         <div className='bg-secondary-light flex justify-center items-center h-dvh '>
