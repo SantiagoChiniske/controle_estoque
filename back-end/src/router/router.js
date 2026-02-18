@@ -16,4 +16,6 @@ router.delete("/deletar/produto/:id",Estoque.deleteProduct)
 
 
 router.post("/user",User.postLogin)
+router.post("/user/create",User.createUser)
+router.get("/user/validation",User.validation)
 module.exports = router;
