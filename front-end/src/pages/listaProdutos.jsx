@@ -48,7 +48,6 @@ useEffect()
       return nomeProduto.includes(valorProduto.toLowerCase())  ;
     })
 
-    console.log(newProduto)
     setProdutos(newProduto)
 
    }

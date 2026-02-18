@@ -39,13 +39,11 @@ useEffect()
      }else{
         alert("Valores vazios")
      }
-
-
-  
   
     }
-    
-    
+
+    const categoriasUnicas =  [...new Set(infocategoria.map(item=>item.categoria))];
+  
     return(
        <div className='bg-secondary flex flex-row'>
              <Header/>
@@ -59,8 +57,8 @@ useEffect()
                     <label >Escolha uma categoria:</label>
                     <select name="opcoes" id="opcoes" className='placeholder:text-white border-b-2 border-primary   outline-none' onClick={(e)=>setCategoria(e.target.value)} placeholder="Selecione a categoria" required>
                         <option value="">Selecione a Categoria</option >
-                        {infocategoria.map(categoria=>(
-                                <option key={categoria.id} value={categoria.categoria} className='bg-secondary' >{categoria.categoria}</option>
+                        {categoriasUnicas.map((categoria,index)=>(
+                                <option key={index} value={categoria} className='bg-secondary' >{categoria}</option>
                     ))}
                     </select>
                     
