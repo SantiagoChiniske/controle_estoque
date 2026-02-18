@@ -44,8 +44,8 @@ useEffect()
     const valorProduto = e.target.value
 
     const newProduto = todosProdutos.filter(produto=>{
-      const nomeProduto = produto.nome
-      return nomeProduto.includes(valorProduto)  ;
+      const nomeProduto = produto.nome.toLowerCase()
+      return nomeProduto.includes(valorProduto.toLowerCase())  ;
     })
 
     console.log(newProduto)
